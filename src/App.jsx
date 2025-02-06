@@ -9,7 +9,7 @@ import Product_Det from "./components/Product_Det";
 import { useContext } from 'react';
 import { counterContext } from './Context/context';
 import { useState } from 'react';
-import Add_to_cart from './components/add_to_cart';
+import Add_to_cart from './components/Add_to_cart';
 import Login from './components/Login';
 import Signup from './components/Signup'
 import Review_Form from './components/Review_Form';
