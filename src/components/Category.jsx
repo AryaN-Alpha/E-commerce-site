@@ -18,7 +18,7 @@ const onClick=(evt)=>{
 
   return (
     <section 
-  className="grid pt-8 bg-gray-100 shadow-2xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 min-h-[40vh] font-frank" 
+  className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-8 bg-gray-100 shadow-2xl min-h-[40vh] font-frank" 
   style={{ boxShadow: 'inset 0 8px 8px rgba(0, 0, 0, 0.2)' }}
 >
   <div name="electronics" onClick={onClick}>
@@ -48,8 +48,8 @@ const onClick=(evt)=>{
       <h3 className="font-bold text-2xl leading-10">Women's Clothing</h3>
     </Link>
   </div>
-
 </section>
+
 
   )
 }
