@@ -25,7 +25,7 @@ function Signin_Form() {
     e.preventDefault(); // Prevents page reload on form submission
 
     try {
-      const response = await fetch('server-backend-sigma.vercel.app/signup', {
+      const response = await fetch('server-backend-sable.vercel.app/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
