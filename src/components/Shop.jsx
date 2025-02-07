@@ -13,6 +13,7 @@ function Shop({ selectedCategory }) {
 
   const onclick = (evt) => {
     const category = evt.currentTarget.textContent.trim(); // Clean up the text
+    setCurrentPage(1); // Reset to first page when category changes
     if (category !== "All") {
       setSelectedCategory(category);
     } else {
@@ -29,9 +30,10 @@ function Shop({ selectedCategory }) {
   // Filter data based on search query
   const filterData = () => {
     const lowercasedQuery = searchQuery.toLowerCase();
-    return CardData.filter((item) =>
-      item.title.toLowerCase().includes(lowercasedQuery) ||
-      item.description.toLowerCase().includes(lowercasedQuery)
+    return CardData.filter(
+      (item) =>
+        item.title.toLowerCase().includes(lowercasedQuery) ||
+        item.description.toLowerCase().includes(lowercasedQuery)
     );
   };
 
@@ -83,25 +85,26 @@ function Shop({ selectedCategory }) {
 
   return (
     <>
-      <section className="flex min-h-[200vh] pt-18 mb-14">
-        <div className="category w-[30%] flex-col justify-items-end md:justify-items-center md:px-8 sm:justify-items-center sm:px-0  px-24 max-h-[150vh]">
-          <div className="search">
+      <section className="flex flex-col md:flex-row min-h-screen pt-18 mb-14">
+        {/* Category Section */}
+        <div className="category w-full md:w-[30%] flex flex-col items-start md:items-center px-4 md:px-8 lg:px-24 mb-8 md:mb-0">
+          <div className="search flex flex-col md:flex-row items-stretch gap-2 w-full mb-4">
             <input
               type="text"
               value={searchQuery} // Bind input to searchQuery state
               onChange={handleSearch} // Handle input change
               placeholder="Search Products"
-              className="text-gray-400 border-2 border-blue-400 w-[70%] h-[39px]"
+              className="text-gray-400 border-2 border-blue-400 w-full md:w-[70%] h-[39px] px-2"
             />
             <button
               type="button"
-              className="border-2 w-[29%] h-[44px] bg-blue-400 text-white font-bold hover: cursor-pointer hover:scale-110"
+              className="border-2 w-full md:w-[29%] h-[44px] bg-blue-400 text-white font-bold hover:cursor-pointer hover:scale-110"
             >
               Search
             </button>
           </div>
-          <div className="categories mt-8 mr-20">
-            <h1 className="font-bold text-3xl mb-4 text-blue-400 ">Categories</h1>
+          <div className="categories mt-8 mr-0 md:mr-20">
+            <h1 className="font-bold text-3xl mb-4 text-blue-400">Categories</h1>
             <ul className="space-y-2">
               <li>
                 <a
@@ -146,7 +149,8 @@ function Shop({ selectedCategory }) {
             </ul>
           </div>
         </div>
-        <div className="items w-[70%] max-h-[150vh] border-l-2 border-gray-300 px-12 ">
+        {/* Items Section */}
+        <div className="items w-full md:w-[70%] border-t-2 md:border-t-0 md:border-l-2 border-gray-300 px-4 md:px-12">
           <div className="top">
             <p className="text-gray-400 mb-2">Home/Shop</p>
             <h4 className="mb-4">
@@ -157,7 +161,7 @@ function Shop({ selectedCategory }) {
             </h4>
           </div>
           <div
-            className="grid my-22 bg-white sm:grid-cols-1 md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-3 min-w-[40%] font-frank"
+            className="grid gap-4 my-8 bg-white sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 font-frank"
           >
             {paginateFilteredData().map((element, index) => (
               <Card
@@ -170,15 +174,15 @@ function Shop({ selectedCategory }) {
               />
             ))}
           </div>
-          <div className="pagination mt-4 flex justify-center space-x-4">
+          <div className="pagination mt-4 flex flex-col md:flex-row justify-center items-center gap-4">
             <button
-              className="bg-blue-400 text-md max-w-[10%] hover:cursor-pointer  dark:bg-blue-400 border rounded-full  inline-flex items-center justify-center py-4 px-4 text-center  font-medium text-white transition-colors duration-300 hover:bg-blue-500"
+              className="bg-blue-400 text-md w-full md:w-auto hover:cursor-pointer dark:bg-blue-400 border rounded-full inline-flex items-center justify-center py-3 px-6 text-center font-medium text-white transition-colors duration-300 hover:bg-blue-500"
               onClick={() => handlePageChange("prev")}
             >
               Previous
             </button>
             <button
-              className="bg-blue-400 text-md max-w-[10%] hover:cursor-pointer  dark:bg-blue-400 border rounded-full  inline-flex items-center justify-center py-4 px-4 text-center  font-medium text-white transition-colors duration-300 hover:bg-blue-500"
+              className="bg-blue-400 text-md w-full md:w-auto hover:cursor-pointer dark:bg-blue-400 border rounded-full inline-flex items-center justify-center py-3 px-6 text-center font-medium text-white transition-colors duration-300 hover:bg-blue-500"
               onClick={() => handlePageChange("next")}
             >
               Next
