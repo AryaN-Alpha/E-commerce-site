@@ -8,7 +8,8 @@ function Product_Det() {
   const [CardData, setCardData] = useState([]);
   const Prod_Det = useContext(counterContext);
   const navigate = useNavigate();
-   const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+
   useEffect(() => {
     const fetchData = async () => {
       if (!Prod_Det.ProdDet_Data?.category) return; // Prevents unnecessary fetches
@@ -31,8 +32,6 @@ function Product_Det() {
     navigate(`/addtocart`);
   };
 
-
-
   const toggleReviewForm = () => {
     navigate(`/reviewform`); // Toggle the visibility of the review form
   };
@@ -45,20 +44,18 @@ function Product_Det() {
     setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
   };
 
-
-
   return (
     <>
       <section className="Wrapper min-h-[65vh] flex flex-col items-center justify-center">
         {/* Product Details */}
         <div
-          className="center flex w-[55%] py-20"
+          className="center flex flex-col md:flex-row w-full md:w-[55%] py-10 md:py-20"
           style={{ boxShadow: "inset 0 -8px 8px rgba(0, 0, 0, 0.1)" }}
         >
-          <div className="max-w-[47%] px-4">
-            <img src={Prod_Det.ProdDet_Data.image} alt="Tree image" />
+          <div className="max-w-full md:max-w-[47%] px-4">
+            <img src={Prod_Det.ProdDet_Data.image} alt="Product" />
           </div>
-          <div className="text max-w-[53%] px-8">
+          <div className="text max-w-full md:max-w-[53%] px-4 md:px-8">
             <div className="prod_Det">
               <p className="text-gray-400 mb-2">
                 Home / Indoor Plants /{" "}
@@ -70,32 +67,26 @@ function Product_Det() {
               <h2 className="text-gray-600 font-bold text-2xl mb-2">
                 Price: ${Prod_Det.ProdDet_Data?.price || "0.00"}
               </h2>
-              <p className="text-gray-800 mb-2 text-md mb-4">
+              <p className="text-gray-800 mb-4 text-md">
                 {Prod_Det.ProdDet_Data?.description
                   ? Prod_Det.ProdDet_Data.description.length > 100
-                    ? `${Prod_Det.ProdDet_Data.description.substring(
-                        0,
-                        100
-                      )}...`
+                    ? `${Prod_Det.ProdDet_Data.description.substring(0, 100)}...`
                     : Prod_Det.ProdDet_Data.description
                   : "No description available."}
               </p>
 
-            
-
-
-              <div className="flex items-center space-x-4">
+              <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
                 <button
                   type="button"
                   onClick={onClick}
-                  className="bg-blue-400 text-md max-w-[30%] hover:cursor-pointer ml-4 border rounded-full inline-flex items-center justify-center py-2 px-2 text-center font-medium text-white transition-colors duration-300 hover:bg-blue-500"
+                  className="bg-blue-400 text-md w-full md:w-auto hover:cursor-pointer border rounded-full inline-flex items-center justify-center py-2 px-2 font-medium text-white transition-colors duration-300 hover:bg-blue-500"
                 >
                   Add to Cart
                 </button>
                 <button
                   type="button"
                   onClick={toggleReviewForm}
-                  className="bg-blue-400 p-2 px-8 text-md max-w-[30%] hover:cursor-pointer ml-4 border rounded-full inline-flex items-center justify-center text-center font-medium text-white transition-colors duration-300 hover:bg-blue-500"
+                  className="bg-blue-400 p-2 px-8 text-md w-full md:w-auto hover:cursor-pointer border rounded-full inline-flex items-center justify-center font-medium text-white transition-colors duration-300 hover:bg-blue-500"
                 >
                   Review
                 </button>
@@ -103,7 +94,7 @@ function Product_Det() {
             </div>
 
             {/* Additional Info */}
-            <hr />
+            <hr className="mt-8" />
             <div className="services space-y-6 py-8 px-4">
               <h2 className="text-2xl font-semibold text-gray-800">
                 Free shipping on orders over $50!
@@ -114,8 +105,7 @@ function Product_Det() {
                   Back Guarantee!
                 </li>
                 <li className="flex items-center">
-                  <span className="mr-2 text-green-500">✔</span> No Hassle
-                  Refunds
+                  <span className="mr-2 text-green-500">✔</span> No Hassle Refunds
                 </li>
                 <li className="flex items-center">
                   <span className="mr-2 text-green-500">✔</span> Secure Payments
@@ -126,8 +116,8 @@ function Product_Det() {
         </div>
 
         {/* Description Section */}
-        <hr />
-        <div className="description w-[55%] p-6 rounded-lg shadow-md bg-white mt-16">
+        <hr className="w-full" />
+        <div className="description w-full md:w-[55%] p-6 rounded-lg shadow-md bg-white mt-16">
           <h1 className="text-3xl font-semibold text-gray-600 mb-4">
             Description
           </h1>
@@ -136,14 +126,13 @@ function Product_Det() {
           </p>
         </div>
           
-                        
         {/* Related Products */}
-        <div className="related_Prod w-[80%] my-24">
+        <div className="related_Prod w-full md:w-[80%] my-24">
           <h1 className="text-3xl font-bold text-gray-800 mb-6 uppercase tracking-wide">
             Related Products
           </h1>
           <div
-            className="prods grid my-8 bg-white sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 min-w-[20%]"
+            className="prods grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 bg-white"
             style={{ boxShadow: "inset 0 -8px 8px rgba(0, 0, 0, 0.2)" }}
           >
             {CardData.length > 0 ? (
