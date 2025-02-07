@@ -19,7 +19,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch('server-backend-sigma.vercel.app/login', {
+      const response = await fetch('server-backend-sable.vercel.app/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
