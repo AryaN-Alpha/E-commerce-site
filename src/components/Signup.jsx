@@ -25,7 +25,7 @@ function Signin_Form() {
     e.preventDefault(); // Prevents page reload on form submission
 
     try {
-      const response = await fetch('http://localhost:8080/signup', {
+      const response = await fetch('https://server-backend-m8uj-git-master-aryan-alphas-projects.vercel.app/api/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
