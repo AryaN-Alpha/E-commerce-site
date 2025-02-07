@@ -8,7 +8,7 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 
 // -----------------------------------------------------------------------------
-// IntroPopup Component: The fun, step-by-step conversation popup
+// IntroPopup Component: The fun, step-by-step conversation popup (Enhanced Style)
 // -----------------------------------------------------------------------------
 const IntroPopup = ({ onFinish }) => {
   const [step, setStep] = useState(1);
@@ -17,57 +17,95 @@ const IntroPopup = ({ onFinish }) => {
     setStep((prev) => prev + 1);
   };
 
+  const buttonStyle = {
+    background: "#fff",
+    color: "#2575fc",
+    border: "none",
+    borderRadius: "8px",
+    padding: "0.6rem 1.2rem",
+    margin: "0.5rem",
+    cursor: "pointer",
+    fontWeight: "bold",
+    transition: "transform 0.2s ease, background 0.2s ease",
+  };
+
+  const buttonHoverStyle = {
+    transform: "scale(1.05)",
+    background: "#e0e0e0",
+  };
+
+  // We'll simulate hover by adding an onMouseEnter/onMouseLeave if needed,
+  // but for simplicity, we are using the CSS transition defined inline.
+
   const renderStep = () => {
     switch (step) {
       case 1:
         return (
           <div>
-            <p>
+            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
               <strong>Hello Mirabel, Welcome!</strong>
               <br />
-              Just for you I have a special surprise for you.
+              Just for you I have a special surprise.
             </p>
-            <button onClick={handleNext}>OK</button>
+            <button style={buttonStyle} onClick={handleNext}>
+              OK
+            </button>
           </div>
         );
       case 2:
         return (
           <div>
-            <p>Knock knock</p>
-            <button onClick={handleNext}>Who's there?</button>
+            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
+              Knock knock
+            </p>
+            <button style={buttonStyle} onClick={handleNext}>
+              Who's there?
+            </button>
           </div>
         );
       case 3:
         return (
           <div>
-            <p>Ali</p>
-            <button onClick={handleNext}>Ali who?</button>
+            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>Ali</p>
+            <button style={buttonStyle} onClick={handleNext}>
+              Ali who?
+            </button>
           </div>
         );
       case 4:
         return (
           <div>
-            <p>Ali me</p>
-            <button onClick={handleNext}>That's so funny</button>
+            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>Ali me</p>
+            <button style={buttonStyle} onClick={handleNext}>
+              That's so funny
+            </button>
           </div>
         );
       case 5:
         return (
           <div>
-            <p>Have you eaten food?</p>
-            <button onClick={() => setStep(6)}>No</button>
-            <button onClick={onFinish}>Yes</button>
+            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
+              Have you eaten food?
+            </p>
+            <button style={buttonStyle} onClick={() => setStep(6)}>
+              No
+            </button>
+            <button style={buttonStyle} onClick={onFinish}>
+              Yes
+            </button>
           </div>
         );
       case 6:
         return (
           <div>
-            <p>
+            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
               😠😢 Please take care of your diet!
               <br />
               Have you eaten food now?
             </p>
-            <button onClick={onFinish}>Yes</button>
+            <button style={buttonStyle} onClick={onFinish}>
+              Yes
+            </button>
           </div>
         );
       default:
@@ -83,7 +121,8 @@ const IntroPopup = ({ onFinish }) => {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        backdropFilter: "blur(4px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -92,12 +131,14 @@ const IntroPopup = ({ onFinish }) => {
     >
       <div
         style={{
-          background: "#fff",
-          padding: "2rem",
-          borderRadius: "8px",
+          background: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
+          padding: "2.5rem",
+          borderRadius: "12px",
           textAlign: "center",
           maxWidth: "90%",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+          color: "#fff",
+          boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5)",
+          animation: "scaleIn 0.4s ease-out",
         }}
       >
         {renderStep()}
