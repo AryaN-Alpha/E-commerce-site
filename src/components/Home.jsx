@@ -249,21 +249,22 @@ function Home({ selectedCategory }) {
         </button>
       </section>
 
-      <section
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-8 p-4 bg-white shadow-2xl min-h-[65vh] font-frank"
-        style={{ boxShadow: "inset 0 -8px 8px rgba(0, 0, 0, 0.2)" }}
-      >
-        {CardData.map((element, index) => (
-          <Card
-            key={index}
-            image={element.image}
-            title={element.title}
-            price={element.price}
-            link={element.category}
-            description={element.description}
-          />
-        ))}
-      </section>
+    <section
+  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-8 p-4 bg-white shadow-2xl min-h-[65vh] font-frank justify-items-center"
+  style={{ boxShadow: "inset 0 -8px 8px rgba(0, 0, 0, 0.2)" }}
+>
+  {CardData.map((element, index) => (
+    <Card
+      key={index}
+      image={element.image}
+      title={element.title}
+      price={element.price}
+      link={element.category}
+      description={element.description}
+    />
+  ))}
+</section>
+
 
       <section
         className="min-h-[90vh] px-8 bg-cover bg-center bg-no-repeat text-black flex items-center md:px-26 md:-mt-24 lg:px-26 lg:-mt-24 xl:px-26 xl:-mt-24 relative"
