@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Menu, X } from "lucide-react"; // Icon for the hamburger menu
 
 function Navbar() {
-  // State to track if the buttons should be hidden
+  const [menuOpen, setMenuOpen] = useState(false);
   const [buttonsVisible, setButtonsVisible] = useState(true);
 
-  // Function to hide the buttons
+  // Toggle mobile menu
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  // Hide buttons on click
   const handleButtonClick = () => {
     setButtonsVisible(false);
   };
@@ -13,62 +19,84 @@ function Navbar() {
   return (
     <nav className="bg-transparent border-gray-200">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <span className="self-center text-blue-500  hover:text-4xl hover:text-blue-400 hover:transition-all duration-500 ease-in-out text-3xl font-bold whitespace-nowrap">
-            Naksu Store
+        {/* Logo */}
+        <Link to="/E-commerce-site" className="flex items-center space-x-3">
+          <span className="self-center text-blue-500 hover:text-4xl hover:text-blue-400 hover:transition-all duration-500 ease-in-out text-3xl font-bold whitespace-nowrap">
+            Smile
           </span>
         </Link>
 
-        {/* Login and Signup buttons - hidden when clicked */}
+        {/* Desktop Menu (hidden on small screens) */}
+        <div className="hidden md:flex items-center space-x-6">
+          <ul className="flex space-x-6">
+            <li><Link to="/E-commerce-site" className="text-black font-semibold hover:text-blue-400 transition">Home</Link></li>
+            <li><Link to="/about" className="text-black font-semibold hover:text-blue-400 transition">About</Link></li>
+            <li><Link to="/ai_assistant" className="text-black font-semibold hover:text-blue-400 transition">AI Assistant</Link></li>
+            <li><Link to="/shop" className="text-black font-semibold hover:text-blue-400 transition">Shop</Link></li>
+            <li><Link to="/faqs" className="text-black font-semibold hover:text-blue-400 transition">FAQs</Link></li>
+          </ul>
+        </div>
+
+        {/* Login & Signup Buttons (hidden when clicked) */}
         {buttonsVisible && (
-          <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          <div className="hidden md:flex items-center space-x-4">
             <Link
               to="/login"
-              onClick={handleButtonClick} // Hide buttons when clicked
-              className="hover:bg-white hover:text-black text-white bg-blue-900 px-6 py-2 rounded-full hover:bg-opacity-90 transition duration-200 mx-2"
+              onClick={handleButtonClick}
+              className="hover:bg-white hover:text-black text-white bg-blue-900 px-6 py-2 rounded-full transition duration-200"
             >
               Login
             </Link>
-
             <Link
               to="/signup"
-              onClick={handleButtonClick} // Hide buttons when clicked
-              className="hover:bg-white hover:text-black text-white bg-blue-900 px-6 py-2 rounded-full hover:bg-opacity-90 transition duration-200"
+              onClick={handleButtonClick}
+              className="hover:bg-white hover:text-black text-white bg-blue-900 px-6 py-2 rounded-full transition duration-200"
             >
               Sign Up
             </Link>
           </div>
         )}
 
-        <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
-            <li>
-              <Link to="/" className="block py-2 px-3 text-black bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500">
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="/ai_assistant" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500">
-                Ai Assistant
-              </Link>
-            </li>
-            <li>
-              <Link to="/shop" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500">
-                Shop
-              </Link>
-            </li>
-            <li>
-              <Link to="/faqs" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue-500">
-                FAQs
-              </Link>
-            </li>
-          </ul>
-        </div>
+        {/* Mobile Menu Button (Hamburger) */}
+        <button
+          onClick={toggleMenu}
+          className="md:hidden text-black focus:outline-none"
+        >
+          {menuOpen ? <X size={32} /> : <Menu size={32} />}
+        </button>
+      </div>
+
+      {/* Mobile Dropdown Menu */}
+      <div
+        className={`md:hidden flex flex-col items-center space-y-4 p-4 bg-gray-900 ${
+          menuOpen ? "block" : "hidden"
+        }`}
+      >
+        <Link to="/E-commerce-site" className="text-white hover:text-blue-400 transition">Home</Link>
+        <Link to="/about" className="text-white hover:text-blue-400 transition">About</Link>
+        <Link to="/ai_assistant" className="text-white hover:text-blue-400 transition">AI Assistant</Link>
+        <Link to="/shop" className="text-white hover:text-blue-400 transition">Shop</Link>
+        <Link to="/faqs" className="text-white hover:text-blue-400 transition">FAQs</Link>
+
+        {/* Mobile Login & Signup Buttons */}
+        {buttonsVisible && (
+          <div className="flex flex-col space-y-2 mt-4">
+            <Link
+              to="/login"
+              onClick={handleButtonClick}
+              className="hover:bg-white hover:text-black text-white bg-blue-900 px-6 py-2 rounded-full transition duration-200"
+            >
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              onClick={handleButtonClick}
+              className="hover:bg-white hover:text-black text-white bg-blue-900 px-6 py-2 rounded-full transition duration-200"
+            >
+              Sign Up
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
   );
