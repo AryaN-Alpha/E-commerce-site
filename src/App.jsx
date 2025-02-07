@@ -14,7 +14,7 @@ import Login from './components/Login';
 import Signup from './components/Signup'
 import Review_Form from './components/Review_Form';
 import Ai_Assistant from './components/Ai_Assistant';
-
+import FAQs from './components/FAQs';
 function App() {
   const [ProdDet_Data, setProdDet_Data] = useState({
     image:"",
@@ -44,7 +44,7 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
         <Route path="/about" element={<Footer/>} />
-        <Route path="/services" element={<h1>Services Page</h1>} />
+        <Route path="/services" element={<FAQs/>} />
         <Route path="/Shop" element={<Shop selectedCategory={""}/>} />
 
 
