@@ -44,7 +44,7 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
         <Route path="/about" element={<Footer/>} />
-        <Route path="/services" element={<FAQs/>} />
+        <Route path="/faqs" element={<FAQs/>} />
         <Route path="/Shop" element={<Shop selectedCategory={""}/>} />
 
 
