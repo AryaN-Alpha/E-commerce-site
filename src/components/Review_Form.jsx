@@ -28,7 +28,7 @@ const Review_Form = () => {
     }
 
     try {
-      const response = await fetch("server-backend-sigma.vercel.app/submit-review", {
+      const response = await fetch("server-backend-sable.vercel.app/submit-review", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
