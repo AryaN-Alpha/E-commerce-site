@@ -23,16 +23,7 @@ function App() {
     category:""
   });
 
-  const fetchTest = async () => {
-    try {
-        const response = await fetch("http://localhost:8080/api");
-        const data = await response.json();
-        console.log(data);
-    } catch (error) {
-        console.error("Fetch error:", error);
-    }
-};
-fetchTest();
+
 
 
   return (
@@ -42,7 +33,7 @@ fetchTest();
       <Router>
       <Navbar /> 
       <Routes>
-        <Route path="/" element={<Home selectedCategory={""}/> } />
+        <Route path="/E-commerce-site" element={<Home selectedCategory={""}/> } />
         <Route path="/electronics" element={<Home selectedCategory={"electronics"}/> } />
         <Route path="/jewelry" element={<Home selectedCategory={"jewelery"}/> } />
         <Route path="/mens-clothing" element={<Home selectedCategory={"men's clothing"}/> } />
