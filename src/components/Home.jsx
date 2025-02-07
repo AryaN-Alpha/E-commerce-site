@@ -29,23 +29,17 @@ const IntroPopup = ({ onFinish }) => {
     transition: "transform 0.2s ease, background 0.2s ease",
   };
 
-  const buttonHoverStyle = {
-    transform: "scale(1.05)",
-    background: "#e0e0e0",
-  };
-
-  // We'll simulate hover by adding an onMouseEnter/onMouseLeave if needed,
-  // but for simplicity, we are using the CSS transition defined inline.
-
   const renderStep = () => {
     switch (step) {
       case 1:
         return (
           <div>
             <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
-              <strong>Hello Mirabel, Welcome!</strong>
+              <strong>
+                helloooooooooooooooooooooooooooooo Mirabelllllllllllllllllllllllllllllllllllllllllllllllll 😍🥰🌸
+              </strong>
               <br />
-              Just for you I have a special surprise.
+              Welcome! 🎉🤗
             </p>
             <button style={buttonStyle} onClick={handleNext}>
               OK
@@ -66,16 +60,20 @@ const IntroPopup = ({ onFinish }) => {
       case 3:
         return (
           <div>
-            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>Ali</p>
+            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
+              Candice
+            </p>
             <button style={buttonStyle} onClick={handleNext}>
-              Ali who?
+              Candice who?
             </button>
           </div>
         );
       case 4:
         return (
           <div>
-            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>Ali me</p>
+            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
+              Candice be love im feeling right now
+            </p>
             <button style={buttonStyle} onClick={handleNext}>
               That's so funny
             </button>
