@@ -28,7 +28,7 @@ const Review_Form = () => {
     }
 
     try {
-      const response = await fetch("https://server-backend-m8uj-git-master-aryan-alphas-projects.vercel.app/submit-review", {
+      const response = await fetch("server-backend-one.vercel.app/submit-review", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
