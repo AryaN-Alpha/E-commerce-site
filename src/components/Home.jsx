@@ -41,7 +41,7 @@ function Home({ selectedCategory }) {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch('http://localhost:8080/reviews');
+        const response = await fetch('https://server-backend-m8uj-git-master-aryan-alphas-projects.vercel.app/reviews');
         const data = await response.json(); // Convert to JSON
         setReviews(data.reviews); // Access the reviews directly
       } catch (error) {
