@@ -7,156 +7,10 @@ import Reviews from "./Assets/Reviews.jpg";
 import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 
-// -----------------------------------------------------------------------------
-// IntroPopup Component: The fun, step-by-step conversation popup (Pinkish Style)
-// -----------------------------------------------------------------------------
-const IntroPopup = ({ onFinish }) => {
-  const [step, setStep] = useState(1);
-
-  const handleNext = () => {
-    setStep((prev) => prev + 1);
-  };
-
-  // Updated button style with a pinkish background and white text
-  const buttonStyle = {
-    background: "#ff69b4", // Hot pink background
-    color: "#fff",         // White text
-    border: "none",
-    borderRadius: "8px",
-    padding: "0.6rem 1.2rem",
-    margin: "0.5rem",
-    cursor: "pointer",
-    fontWeight: "bold",
-    transition: "transform 0.2s ease, background 0.2s ease",
-  };
-
-  const renderStep = () => {
-    switch (step) {
-      case 1:
-        return (
-          <div>
-            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
-              <strong>
-                helloooooooooooooooooooooooooooooo Mirabelllllllllllllllllllllllllllllllllllllllllllllllll 😍🥰🌸
-              </strong>
-              <br />
-              Welcome! 🎉🤗
-            </p>
-            <button style={buttonStyle} onClick={handleNext}>
-              OK
-            </button>
-          </div>
-        );
-      case 2:
-        return (
-          <div>
-            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
-              Knock knock
-            </p>
-            <button style={buttonStyle} onClick={handleNext}>
-              Who's there?
-            </button>
-          </div>
-        );
-      case 3:
-        return (
-          <div>
-            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
-              Candice
-            </p>
-            <button style={buttonStyle} onClick={handleNext}>
-              Candice who?
-            </button>
-          </div>
-        );
-      case 4:
-        return (
-          <div>
-            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
-              Candice be love im feeling right now
-            </p>
-            <button style={buttonStyle} onClick={handleNext}>
-              👡 Marogi 👋🏻👋🏻 
-            </button>
-            <button style={buttonStyle} onClick={handleNext}>
-              That's so funny 😂
-            </button>
-          </div>
-        );
-      case 5:
-        return (
-          <div>
-            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
-              Kya Tum nay khana khaya? 🤔🤔🤔
-            </p>
-            <button style={buttonStyle} onClick={() => setStep(6)}>
-              No
-            </button>
-            <button style={buttonStyle} onClick={onFinish}>
-              Yes
-            </button>
-          </div>
-        );
-      case 6:
-        return (
-          <div>
-            <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
-              😠😢 Please Khayal Rakha kro na Apna! 🥺🥺
-              <br />
-              Have you eaten food now?
-            </p>
-            <button style={buttonStyle} onClick={onFinish}>
-              Yes
-            </button>
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
-        backdropFilter: "blur(4px)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 1000,
-      }}
-    >
-      <div
-        style={{
-          background: "linear-gradient(135deg, #ff99cc 0%, #ff66cc 100%)", // More pinkish gradient
-          padding: "2.5rem",
-          borderRadius: "12px",
-          textAlign: "center",
-          maxWidth: "90%",
-          color: "#fff",
-          boxShadow: "0 10px 25px rgba(0, 0, 0, 0.5)",
-          animation: "scaleIn 0.4s ease-out",
-        }}
-      >
-        {renderStep()}
-      </div>
-    </div>
-  );
-};
-
-// -----------------------------------------------------------------------------
-// Home Component: Your main homepage with integrated popup conversation
-// -----------------------------------------------------------------------------
 function Home({ selectedCategory }) {
   const [CardData, setCardData] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showIntro, setShowIntro] = useState(true);
   const navigate = useNavigate();
 
   const handleViewAllClick = () => {
@@ -222,7 +76,6 @@ function Home({ selectedCategory }) {
 
   return (
     <div className="h-[500vh] bg-white overflow-x-hidden">
-      {showIntro && <IntroPopup onFinish={() => setShowIntro(false)} />}
       <HeroSection />
       <Category />
 
@@ -249,28 +102,28 @@ function Home({ selectedCategory }) {
         </button>
       </section>
 
-    <section
-  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-8 p-4 bg-white shadow-2xl min-h-[65vh] font-frank justify-items-center"
-  style={{ boxShadow: "inset 0 -8px 8px rgba(0, 0, 0, 0.2)" }}
->
-  {CardData.map((element, index) => (
-    <Card
-      key={index}
-      image={element.image}
-      title={element.title}
-      price={element.price}
-      link={element.category}
-      description={element.description}
-    />
-  ))}
-</section>
-
+      <section
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-8 p-4 bg-white shadow-2xl min-h-[65vh] font-frank justify-items-center"
+        style={{ boxShadow: "inset 0 -8px 8px rgba(0, 0, 0, 0.2)" }}
+      >
+        {CardData.map((element, index) => (
+          <Card
+            key={index}
+            image={element.image}
+            title={element.title}
+            price={element.price}
+            link={element.category}
+            description={element.description}
+          />
+        ))}
+      </section>
 
       <section
         className="min-h-[90vh] px-8 bg-cover bg-center bg-no-repeat text-black flex items-center md:px-26 md:-mt-24 lg:px-26 lg:-mt-24 xl:px-26 xl:-mt-24 relative"
         style={{
           backgroundImage: `url(${NewArrival})`,
           backgroundAttachment: "scroll",
+          backgroundPosition: "center",
         }}
       >
         <div
