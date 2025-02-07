@@ -39,27 +39,44 @@ function Home({ selectedCategory }) {
 
 
   useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const response = await fetch('https://server-backend-sable.vercel.app/reviews');
-        const data = await response.json(); // Convert to JSON
-        setReviews(data.reviews); // Access the reviews directly
-      } catch (error) {
-        console.error('Error fetching reviews:', error);
-      } finally {
-        setLoading(false);
+  // Define a default array of 4 reviews
+  const defaultReviews = [
+    { First_name: "Alice", ReviewText: "Great product!" },
+    { First_name: "Bob", ReviewText: "I love it!" },
+    { First_name: "Charlie", ReviewText: "Amazing service!" },
+    { First_name: "Diana", ReviewText: "Highly recommended!" },
+  ];
+
+  const fetchReviews = async () => {
+    try {
+      const response = await fetch('https://server-backend-sable.vercel.app/reviews');
+      const data = await response.json(); // Convert to JSON
+
+      // If data.reviews exists and has items, use it; otherwise, use the defaultReviews
+      if (data.reviews && data.reviews.length > 0) {
+        setReviews(data.reviews);
+      } else {
+        setReviews(defaultReviews);
       }
-    };
-  
-    // Initial fetch
-    fetchReviews();
-  
-    // Set interval to fetch new reviews every 5 seconds
-    const interval = setInterval(fetchReviews, 5000); // 10 seconds
-  
-    // Clear interval when component is unmounted
-    return () => clearInterval(interval);
-  }, []);
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+      // In case of error, also use the defaultReviews array
+      setReviews(defaultReviews);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Initial fetch
+  fetchReviews();
+
+  // Set interval to fetch new reviews every 5 seconds
+  const interval = setInterval(fetchReviews, 5000);
+
+  // Clear interval when component is unmounted
+  return () => clearInterval(interval);
+}, []);
+
   
   return (
     <div className="h-[500vh] bg-white overflow-x-hidden">
