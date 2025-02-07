@@ -41,7 +41,7 @@ function Home({ selectedCategory }) {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch('server-backend-sigma.vercel.app/reviews');
+        const response = await fetch('server-backend-sable.vercel.app/reviews');
         const data = await response.json(); // Convert to JSON
         setReviews(data.reviews); // Access the reviews directly
       } catch (error) {
