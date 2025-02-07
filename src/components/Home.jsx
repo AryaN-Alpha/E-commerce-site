@@ -8,7 +8,7 @@ import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 
 // -----------------------------------------------------------------------------
-// IntroPopup Component: The fun, step-by-step conversation popup (Enhanced Style)
+// IntroPopup Component: The fun, step-by-step conversation popup (Pinkish Style)
 // -----------------------------------------------------------------------------
 const IntroPopup = ({ onFinish }) => {
   const [step, setStep] = useState(1);
@@ -17,9 +17,10 @@ const IntroPopup = ({ onFinish }) => {
     setStep((prev) => prev + 1);
   };
 
+  // Updated button style with a pinkish text color
   const buttonStyle = {
     background: "#fff",
-    color: "#2575fc",
+    color: "#ff69b4", // Hot pink color
     border: "none",
     borderRadius: "8px",
     padding: "0.6rem 1.2rem",
@@ -83,7 +84,7 @@ const IntroPopup = ({ onFinish }) => {
         return (
           <div>
             <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
-              Have you eaten food?
+              Kya Tum nay khana khaya? 🤔🤔🤔
             </p>
             <button style={buttonStyle} onClick={() => setStep(6)}>
               No
@@ -97,7 +98,7 @@ const IntroPopup = ({ onFinish }) => {
         return (
           <div>
             <p style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>
-              😠😢 Please take care of your diet!
+              😠😢 Please Khayal Rakha kro na Apna! 🥺🥺
               <br />
               Have you eaten food now?
             </p>
@@ -129,7 +130,7 @@ const IntroPopup = ({ onFinish }) => {
     >
       <div
         style={{
-          background: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
+          background: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)", // Pinkish gradient
           padding: "2.5rem",
           borderRadius: "12px",
           textAlign: "center",
