@@ -33,7 +33,7 @@ function App() {
       <Router>
       <Navbar /> 
       <Routes>
-        <Route path="/E-commerce-site" element={<Home selectedCategory={""}/> } />
+        <Route path="/" element={<Home selectedCategory={""}/> } />
         <Route path="/electronics" element={<Home selectedCategory={"electronics"}/> } />
         <Route path="/jewelry" element={<Home selectedCategory={"jewelery"}/> } />
         <Route path="/mens-clothing" element={<Home selectedCategory={"men's clothing"}/> } />
