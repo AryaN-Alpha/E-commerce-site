@@ -19,7 +19,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://server-backend-m8uj-git-master-aryan-alphas-projects.vercel.app/login', {
+      const response = await fetch('server-backend-one.vercel.app/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
