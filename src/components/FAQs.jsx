@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 const faqs = [
   { question: "What payment methods do you accept?", answer: "We accept credit/debit cards, PayPal, Apple Pay, Google Pay, and cryptocurrency." },
@@ -23,7 +24,7 @@ const faqs = [
   { question: "How do I sign up for newsletters?", answer: "Enter your email at the bottom of our website to receive updates and deals." }
 ];
 
-export default function FAQs() {
+export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -33,30 +34,37 @@ export default function FAQs() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white flex justify-center items-center p-6">
       <div className="w-full max-w-4xl">
-        <h1 className="text-4xl font-bold text-center text-blue-400 mb-8">
-          Frequently Asked Questions
-        </h1>
+        <h1 className="text-4xl font-bold text-center text-blue-400 mb-8">Frequently Asked Questions</h1>
+        
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-700 transform transition duration-300 hover:scale-105"
+            <motion.div 
+              key={index} 
+              className="bg-gray-800 rounded-2xl p-4 shadow-lg border border-gray-700"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 200 }}
             >
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="flex justify-between items-center w-full text-lg font-medium focus:outline-none"
+              <button 
+                onClick={() => toggleFAQ(index)} 
+                className="flex justify-between items-center w-full text-lg font-medium"
               >
                 <span>{faq.question}</span>
                 <span className="text-blue-400 text-xl">
                   {openIndex === index ? "−" : "+"}
                 </span>
               </button>
+
               {openIndex === index && (
-                <p className="mt-2 text-gray-400 transition-all duration-300">
+                <motion.p 
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                  className="mt-2 text-gray-400"
+                >
                   {faq.answer}
-                </p>
+                </motion.p>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
