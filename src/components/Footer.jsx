@@ -1,5 +1,5 @@
 import React from "react";
-
+import Logo from './Assets/Logo.webp'
 const Footer = () => {
   return (
     <>
@@ -12,9 +12,7 @@ const Footer = () => {
             
             {/* Company Info */}
             <div className="text-center md:text-left">
-              <a href="/" className="font-bold text-3xl leading-10 text-blue-400 hover:text-5xl hover:transition-all duration-500">
-                Smile
-              </a>
+              <img src={Logo} alt="Logo" className="h-20 w-auto" />
               <p className="mt-4 text-base text-body-color dark:text-dark-6">
                 Your go-to destination for premium fashion, quality, and style in every piece.
               </p>
