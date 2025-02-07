@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react"; // Icon for the hamburger menu
-
+import Logo from './Assets/Logo.webp'
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [buttonsVisible, setButtonsVisible] = useState(true);
@@ -21,10 +21,9 @@ function Navbar() {
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* Logo */}
         <Link to="/E-commerce-site" className="flex items-center space-x-3">
-          <span className="self-center text-blue-500 hover:text-4xl hover:text-blue-400 hover:transition-all duration-500 ease-in-out text-3xl font-bold whitespace-nowrap">
-            Smile
-          </span>
-        </Link>
+  <img src={Logo} alt="Logo" className="h-20 w-auto" />
+  
+</Link>
 
         {/* Desktop Menu (hidden on small screens) */}
         <div className="hidden md:flex items-center space-x-6">
@@ -43,14 +42,14 @@ function Navbar() {
             <Link
               to="/login"
               onClick={handleButtonClick}
-              className="hover:bg-white hover:text-black text-white bg-blue-900 px-6 py-2 rounded-full transition duration-200"
+              className="hover:bg-white hover:text-black text-white bg-blue-400 px-6 py-2 rounded-full transition duration-200"
             >
               Login
             </Link>
             <Link
               to="/signup"
               onClick={handleButtonClick}
-              className="hover:bg-white hover:text-black text-white bg-blue-900 px-6 py-2 rounded-full transition duration-200"
+              className="hover:bg-white hover:text-black text-white bg-blue-400 px-6 py-2 rounded-full transition duration-200"
             >
               Sign Up
             </Link>
