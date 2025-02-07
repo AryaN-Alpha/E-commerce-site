@@ -21,18 +21,13 @@ function HeroSection() {
   }, [currentImage]);
   return (
     <>
-     <section
-  className="min-h-[85vh] sm:min-h-[60vh] xs:min-h-[50vh] w-full flex items-center justify-center -mt-20
-             bg-white dark:bg-gray-900 bg-cover bg-center bg-no-repeat"
-  style={{
-    backgroundImage: `url(${images[currentImage]})`,
-    transition: "background-image 1s ease-in-out",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
->
- 
-</section>
+   <section
+        className="min-h-[85vh] bg-cover bg-center bg-no-repeat bg-white dark:bg-gray-900 flex items-center justify-center -mt-20"
+        style={{
+          backgroundImage: `url(${images[currentImage]})`,
+          transition: "background-image 1s ease-in-out", // Smooth transition
+        }}
+      ></section>
 
 
       <section className="grid  shadow-2xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 min-h-[16vh] font-frank">
