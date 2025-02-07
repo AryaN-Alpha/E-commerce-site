@@ -17,10 +17,10 @@ const IntroPopup = ({ onFinish }) => {
     setStep((prev) => prev + 1);
   };
 
-  // Updated button style with a pinkish text color
+  // Updated button style with a pinkish background and white text
   const buttonStyle = {
-    background: "#fff",
-    color: "#ff69b4", // Hot pink color
+    background: "#ff69b4", // Hot pink background
+    color: "#fff",         // White text
     border: "none",
     borderRadius: "8px",
     padding: "0.6rem 1.2rem",
@@ -76,7 +76,10 @@ const IntroPopup = ({ onFinish }) => {
               Candice be love im feeling right now
             </p>
             <button style={buttonStyle} onClick={handleNext}>
-              That's so funny
+              👡 Marogi 👋🏻👋🏻 
+            </button>
+            <button style={buttonStyle} onClick={handleNext}>
+              That's so funny 😂
             </button>
           </div>
         );
@@ -130,7 +133,7 @@ const IntroPopup = ({ onFinish }) => {
     >
       <div
         style={{
-          background: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)", // Pinkish gradient
+          background: "linear-gradient(135deg, #ff99cc 0%, #ff66cc 100%)", // More pinkish gradient
           padding: "2.5rem",
           borderRadius: "12px",
           textAlign: "center",
