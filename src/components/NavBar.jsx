@@ -71,7 +71,7 @@ function Navbar() {
           menuOpen ? "block" : "hidden"
         }`}
       >
-        <Link to="/E-commerce-site" className="text-white hover:text-blue-400 transition">Home</Link>
+        <Link to="/" className="text-white hover:text-blue-400 transition">Home</Link>
         <Link to="/about" className="text-white hover:text-blue-400 transition">About</Link>
         <Link to="/ai_assistant" className="text-white hover:text-blue-400 transition">AI Assistant</Link>
         <Link to="/shop" className="text-white hover:text-blue-400 transition">Shop</Link>
