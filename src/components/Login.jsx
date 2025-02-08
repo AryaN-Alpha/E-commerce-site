@@ -29,8 +29,8 @@ function Login() {
 
       if (response.ok) {
         setMessage('Login successful! Redirecting...');
-        alert(data.user.Email)
-        // ✅ Store user info in localStorage
+        alert(data.user.Email);
+        // Store user info in localStorage
         localStorage.setItem("First_name", data.user.First_name);
         localStorage.setItem("Last_name", data.user.Last_name);
         localStorage.setItem("Email", data.user.Email);
@@ -78,11 +78,26 @@ function Login() {
           />
         </div>
 
-        <button type="submit" className="w-full py-2.5 bg-blue-700 text-white rounded-lg text-sm font-medium hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+        <button 
+          type="submit" 
+          className="w-full py-2.5 bg-blue-700 text-white rounded-lg text-sm font-medium hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+        >
           Submit
         </button>
 
         {message && <p className="mt-4 text-center text-sm text-red-500">{message}</p>}
+
+        {/* Sign up button */}
+        <p className="mt-4 text-center text-sm">
+          Don't have an account?{' '}
+          <button 
+            type="button" 
+            className="text-blue-500 hover:underline hover:cursor-pointer"
+            onClick={() => navigate('/signup')}
+          >
+            Sign up
+          </button>
+        </p>
       </form>
     </div>
   );
