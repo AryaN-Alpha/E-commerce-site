@@ -174,52 +174,48 @@ function Home({ selectedCategory }) {
         </button>
       </section>
 
-      <section
-        className="relative bg-cover bg-center bg-no-repeat pb-16"
-        style={{
-          backgroundImage: `url(${Reviews})`,
-          backgroundAttachment: "fixed",
-        }}
-      >
-        {/* Overlay to darken the background image */}
-        <div className="absolute inset-0 bg-black opacity-70"></div>
-
-        {/* Content container with a higher z-index */}
-        <div className="relative z-10">
-          <h1 className="font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-8 leading-tight text-center pt-16">
-            What Our Clients Say
-          </h1>
-
-          {/* Grid container for reviews */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
-            {reviews.map((review, index) => (
-              <div
-                key={index}
-                className="w-full sm:w-[80%] md:w-[70%] lg:w-[50%] p-6 md:p-8 mx-auto bg-gray-200 hover:scale-105 transition-all duration-200 ease-in-out shadow-lg border-l-4 border-blue-400 rounded-lg mt-6"
-              >
-                <p className="text-lg md:text-xl leading-7 text-gray-800 font-semibold">
-                  {review.ReviewText}
-                </p>
-                <h2 className="font-bold text-lg md:text-xl mt-4 text-gray-900 flex items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="w-6 h-6 text-blue-400 mr-2"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  {review.First_name}
-                </h2>
-              </div>
-            ))}
-          </div>
+    <section
+  className="relative bg-cover bg-center bg-no-repeat pb-16"
+  style={{
+    backgroundImage: `url(${Reviews})`,
+    backgroundAttachment: "fixed",
+  }}
+>
+  <div className="absolute inset-0 bg-black opacity-70"></div>
+  <div className="relative z-10">
+    <h1 className="font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-8 leading-tight text-center pt-16">
+      What Our Clients Say
+    </h1>
+    <div className="grid grid-cols-2 gap-4 px-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2">
+      {reviews.map((review, index) => (
+        <div
+          key={index}
+          className="w-full p-6 md:p-8 bg-gray-200 hover:scale-105 transition-all duration-200 ease-in-out shadow-lg border-l-4 border-blue-400 rounded-lg mt-6"
+        >
+          <p className="text-lg md:text-xl leading-7 text-gray-800 font-semibold">
+            {review.ReviewText}
+          </p>
+          <h2 className="font-bold text-lg md:text-xl mt-4 text-gray-900 flex items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-6 h-6 text-blue-400 mr-2"
+            >
+              <path
+                fillRule="evenodd"
+                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                clipRule="evenodd"
+              />
+            </svg>
+            {review.First_name}
+          </h2>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       <Footer />
     </div>
