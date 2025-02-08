@@ -128,31 +128,32 @@ function Product_Det() {
           
         {/* Related Products */}
         <div className="related_Prod w-full md:w-[80%] my-24">
-          <h1 className="text-3xl font-bold text-gray-800 mb-6 uppercase tracking-wide">
-            Related Products
-          </h1>
-          <div
-            className="prods grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 bg-white"
-            style={{ boxShadow: "inset 0 -8px 8px rgba(0, 0, 0, 0.2)" }}
-          >
-            {CardData.length > 0 ? (
-              CardData.map((element, index) => (
-                <Card
-                  key={index}
-                  image={element.image}
-                  title={element.title}
-                  price={element.price}
-                  link={element.category}
-                  description={element.description}
-                />
-              ))
-            ) : (
-              <p className="text-gray-600 text-center w-full col-span-4">
-                Loading related products...
-              </p>
-            )}
-          </div>
-        </div>
+  <h1 className="text-3xl font-bold text-gray-800 mb-6 uppercase tracking-wide">
+    Related Products
+  </h1>
+  <div
+    className="prods grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 bg-white"
+    style={{ boxShadow: "inset 0 -8px 8px rgba(0, 0, 0, 0.2)" }}
+  >
+    {CardData.length > 0 ? (
+      CardData.map((element, index) => (
+        <Card
+          key={index}
+          image={element.image}
+          title={element.title}
+          price={element.price}
+          link={element.category}
+          description={element.description}
+        />
+      ))
+    ) : (
+      <p className="text-gray-600 text-center w-full col-span-4">
+        Loading related products...
+      </p>
+    )}
+  </div>
+</div>
+
       </section>
       <Footer />
     </>
