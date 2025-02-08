@@ -16,6 +16,10 @@ function Navbar() {
     setButtonsVisible(false);
   };
 
+  handleHome=()=>{
+
+  }
+
   return (
     <nav className="bg-transparent border-gray-200">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -26,97 +30,15 @@ function Navbar() {
 </Link>
 
         {/* Desktop Menu (hidden on small screens) */}
-        {/* Mobile Menu: visible only on small screens */}
-          <div className="flex md:hidden">
-            <ul className="flex space-x-4">
-              <li>
-                <Link
-                  to="/"
-                  className="text-black font-semibold hover:text-blue-400 transition"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/about"
-                  className="text-black font-semibold hover:text-blue-400 transition"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/ai_assistant"
-                  className="text-black font-semibold hover:text-blue-400 transition"
-                >
-                  AI Assistant
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/shop"
-                  className="text-black font-semibold hover:text-blue-400 transition"
-                >
-                  Shop
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/faqs"
-                  className="text-black font-semibold hover:text-blue-400 transition"
-                >
-                  FAQs
-                </Link>
-              </li>
-            </ul>
-          </div>
-  
-          {/* Desktop Menu: visible only on medium and larger screens */}
-          <div className="hidden md:flex items-center space-x-6">
-            <ul className="flex space-x-6">
-              <li>
-                <Link
-                  to="/"
-                  className="text-black font-semibold hover:text-blue-400 transition"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/about"
-                  className="text-black font-semibold hover:text-blue-400 transition"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/ai_assistant"
-                  className="text-black font-semibold hover:text-blue-400 transition"
-                >
-                  AI Assistant
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/shop"
-                  className="text-black font-semibold hover:text-blue-400 transition"
-                >
-                  Shop
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/faqs"
-                  className="text-black font-semibold hover:text-blue-400 transition"
-                >
-                  FAQs
-                </Link>
-              </li>
-            </ul>
-          </div>
+        <div className="hidden md:flex items-center space-x-6">
+          <ul className="flex space-x-6">
+            <li><Link to="/" className="text-black font-semibold hover:text-blue-400 transition">Home</Link></li>
+            <li><Link to="/about" className="text-black font-semibold hover:text-blue-400 transition">About</Link></li>
+            <li><Link to="/ai_assistant" className="text-black font-semibold hover:text-blue-400 transition">AI Assistant</Link></li>
+            <li><Link to="/shop" className="text-black font-semibold hover:text-blue-400 transition">Shop</Link></li>
+            <li><Link to="/faqs" className="text-black font-semibold hover:text-blue-400 transition">FAQs</Link></li>
+          </ul>
+        </div>
 
         {/* Login & Signup Buttons (hidden when clicked) */}
         {buttonsVisible && (
@@ -153,7 +75,7 @@ function Navbar() {
           menuOpen ? "block" : "hidden"
         }`}
       >
-        <Link to="/E-commerce-site" className="text-white hover:text-blue-400 transition">Home</Link>
+        <Link to="/" className="text-white hover:text-blue-400 transition">Home</Link>
         <Link to="/about" className="text-white hover:text-blue-400 transition">About</Link>
         <Link to="/ai_assistant" className="text-white hover:text-blue-400 transition">AI Assistant</Link>
         <Link to="/shop" className="text-white hover:text-blue-400 transition">Shop</Link>
