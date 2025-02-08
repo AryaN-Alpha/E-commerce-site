@@ -20,7 +20,7 @@ function Navbar() {
     <nav className="bg-transparent border-gray-200">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* Logo */}
-        <Link to="/E-commerce-site" className="flex items-center space-x-3">
+        <Link to="/" className="flex items-center space-x-3">
   <img src={Logo} alt="Logo" className="h-20 w-auto" />
   
 </Link>
@@ -28,7 +28,7 @@ function Navbar() {
         {/* Desktop Menu (hidden on small screens) */}
         <div className="hidden md:flex items-center space-x-6">
           <ul className="flex space-x-6">
-            <li><Link to="/E-commerce-site" className="text-black font-semibold hover:text-blue-400 transition">Home</Link></li>
+            <li><Link to="/" className="text-black font-semibold hover:text-blue-400 transition">Home</Link></li>
             <li><Link to="/about" className="text-black font-semibold hover:text-blue-400 transition">About</Link></li>
             <li><Link to="/ai_assistant" className="text-black font-semibold hover:text-blue-400 transition">AI Assistant</Link></li>
             <li><Link to="/shop" className="text-black font-semibold hover:text-blue-400 transition">Shop</Link></li>
