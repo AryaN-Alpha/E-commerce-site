@@ -14,9 +14,21 @@ function Login() {
     });
   };
 
-  // Handle login submission
+  // Handle login submission with validations
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validation: Check if email ends with "@gmail.com"
+    if (!formData.Email.toLowerCase().endsWith('@gmail.com')) {
+      setMessage('Email must end with @gmail.com');
+      return;
+    }
+
+    // Validation: Check if password is at least 8 characters
+    if (formData.Password.length < 8) {
+      setMessage('Password must be at least 8 characters long');
+      return;
+    }
 
     try {
       const response = await fetch('https://server-backend-sable.vercel.app/login', {
@@ -29,8 +41,8 @@ function Login() {
 
       if (response.ok) {
         setMessage('Login successful! Redirecting...');
-        alert(data.user.Email)
-        // ✅ Store user info in localStorage
+        alert(data.user.Email);
+        // Store user info in localStorage
         localStorage.setItem("First_name", data.user.First_name);
         localStorage.setItem("Last_name", data.user.Last_name);
         localStorage.setItem("Email", data.user.Email);
@@ -60,6 +72,7 @@ function Login() {
             name="Email"
             value={formData.Email}
             onChange={handleChange}
+            placeholder="yourname@gmail.com"
             className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
             required
           />
@@ -73,6 +86,7 @@ function Login() {
             name="Password"
             value={formData.Password}
             onChange={handleChange}
+            placeholder="Enter at least 8 characters"
             className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
             required
           />
