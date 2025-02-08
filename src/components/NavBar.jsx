@@ -26,15 +26,97 @@ function Navbar() {
 </Link>
 
         {/* Desktop Menu (hidden on small screens) */}
-        <div className="hidden md:flex items-center space-x-6">
-          <ul className="flex space-x-6">
-            <li><Link to="/" className="text-black font-semibold hover:text-blue-400 transition">Home</Link></li>
-            <li><Link to="/about" className="text-black font-semibold hover:text-blue-400 transition">About</Link></li>
-            <li><Link to="/ai_assistant" className="text-black font-semibold hover:text-blue-400 transition">AI Assistant</Link></li>
-            <li><Link to="/shop" className="text-black font-semibold hover:text-blue-400 transition">Shop</Link></li>
-            <li><Link to="/faqs" className="text-black font-semibold hover:text-blue-400 transition">FAQs</Link></li>
-          </ul>
-        </div>
+        {/* Mobile Menu: visible only on small screens */}
+          <div className="flex md:hidden">
+            <ul className="flex space-x-4">
+              <li>
+                <Link
+                  to="/"
+                  className="text-black font-semibold hover:text-blue-400 transition"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about"
+                  className="text-black font-semibold hover:text-blue-400 transition"
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/ai_assistant"
+                  className="text-black font-semibold hover:text-blue-400 transition"
+                >
+                  AI Assistant
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/shop"
+                  className="text-black font-semibold hover:text-blue-400 transition"
+                >
+                  Shop
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/faqs"
+                  className="text-black font-semibold hover:text-blue-400 transition"
+                >
+                  FAQs
+                </Link>
+              </li>
+            </ul>
+          </div>
+  
+          {/* Desktop Menu: visible only on medium and larger screens */}
+          <div className="hidden md:flex items-center space-x-6">
+            <ul className="flex space-x-6">
+              <li>
+                <Link
+                  to="/"
+                  className="text-black font-semibold hover:text-blue-400 transition"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about"
+                  className="text-black font-semibold hover:text-blue-400 transition"
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/ai_assistant"
+                  className="text-black font-semibold hover:text-blue-400 transition"
+                >
+                  AI Assistant
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/shop"
+                  className="text-black font-semibold hover:text-blue-400 transition"
+                >
+                  Shop
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/faqs"
+                  className="text-black font-semibold hover:text-blue-400 transition"
+                >
+                  FAQs
+                </Link>
+              </li>
+            </ul>
+          </div>
 
         {/* Login & Signup Buttons (hidden when clicked) */}
         {buttonsVisible && (
