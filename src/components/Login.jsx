@@ -36,7 +36,7 @@ function Login() {
         localStorage.setItem("Email", data.user.Email);
 
         setTimeout(() => {
-          navigate('/');
+          navigate('/E-commerce-site');
         }, 2000);
       } else {
         setMessage(data.message || 'Invalid email or password.');
