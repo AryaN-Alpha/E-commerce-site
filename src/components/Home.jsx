@@ -18,7 +18,7 @@ function Home({ selectedCategory }) {
 
   // Force user to log in by checking for a token in localStorage
   useEffect(() => {
-    const token = localStorage.getItem("token"); // Adjust key as needed
+    const token = localStorage.getItem("First_name"); // Adjust key as needed
     if (!token) {
       navigate("/login"); // Redirect to login page if token not found
     }
