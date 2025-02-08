@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import HeroSection from "./HeroSection";
 import Category from "./Category";
 import Card from "./Card";
 import NewArrival from "./Assets/NewArrival.webp";
 import Reviews from "./Assets/Reviews.jpg";
 import Footer from "./Footer";
-import { useNavigate } from "react-router-dom";
-
 
 // -----------------------------------------------------------------------------
 // Home Component: Your main homepage with integrated popup conversation
@@ -15,8 +14,15 @@ function Home({ selectedCategory }) {
   const [CardData, setCardData] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showIntro, setShowIntro] = useState(true);
   const navigate = useNavigate();
+
+  // Force user to log in by checking for a token in localStorage
+  useEffect(() => {
+    const token = localStorage.getItem("token"); // Adjust key as needed
+    if (!token) {
+      navigate("/login"); // Redirect to login page if token not found
+    }
+  }, [navigate]);
 
   const handleViewAllClick = () => {
     navigate("/Shop");
@@ -108,47 +114,46 @@ function Home({ selectedCategory }) {
       </section>
 
       <section
-  className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 my-4 md:my-8 p-4 bg-white shadow-2xl min-h-[65vh] font-frank"
-  style={{ boxShadow: "inset 0 -8px 8px rgba(0, 0, 0, 0.2)" }}
->
-  {CardData.map((element, index) => (
-    <Card
-      key={index}
-      image={element.image}
-      title={element.title}
-      price={element.price}
-      link={element.category}
-      description={element.description}
-    />
-  ))}
-</section>
+        className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 my-4 md:my-8 p-4 bg-white shadow-2xl min-h-[65vh] font-frank"
+        style={{ boxShadow: "inset 0 -8px 8px rgba(0, 0, 0, 0.2)" }}
+      >
+        {CardData.map((element, index) => (
+          <Card
+            key={index}
+            image={element.image}
+            title={element.title}
+            price={element.price}
+            link={element.category}
+            description={element.description}
+          />
+        ))}
+      </section>
 
-<section
-  className="min-h-[60vh] md:min-h-[90vh] px-8 bg-cover bg-center bg-no-repeat text-black flex items-center md:px-26 md:-mt-24 lg:px-26 lg:-mt-24 xl:px-26 xl:-mt-24 relative"
-  style={{
-    backgroundImage: `url(${NewArrival})`,
-    backgroundAttachment: "scroll",
-  }}
->
-  <div
-    className="absolute inset-0"
-    style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
-  ></div>
-  <div className="w-full md:max-w-[50%]">
-    <h1 className="font-bold text-3xl md:text-6xl lg:text-6xl xl:text-6xl mb-4 leading-tight mb-12 text-gray-700">
-      New Arrivals Are Here – Stay Fresh, Stay Ahead!
-    </h1>
-    <p className="text-xl mb-4 leading-10 hidden lg:block xl:block sm:hidden">
-      Gear up for the latest and greatest! From sleek men’s fits to trendy
-      women’s styles, jaw-dropping jewelry, and next-level electronics,
-      our new arrivals are all about keeping you ahead of the curve.
-      Whether you're upgrading your look or your gadgets, we’ve got the
-      hottest picks waiting for you. 🚀 Don’t just keep up—set the trend.
-      Shop now before they’re gone! 🛍️✨
-    </p>
-  </div>
-</section>
-
+      <section
+        className="min-h-[60vh] md:min-h-[90vh] px-8 bg-cover bg-center bg-no-repeat text-black flex items-center md:px-26 md:-mt-24 lg:px-26 lg:-mt-24 xl:px-26 xl:-mt-24 relative"
+        style={{
+          backgroundImage: `url(${NewArrival})`,
+          backgroundAttachment: "scroll",
+        }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+        ></div>
+        <div className="w-full md:max-w-[50%]">
+          <h1 className="font-bold text-3xl md:text-6xl lg:text-6xl xl:text-6xl mb-4 leading-tight mb-12 text-gray-700">
+            New Arrivals Are Here – Stay Fresh, Stay Ahead!
+          </h1>
+          <p className="text-xl mb-4 leading-10 hidden lg:block xl:block sm:hidden">
+            Gear up for the latest and greatest! From sleek men’s fits to trendy
+            women’s styles, jaw-dropping jewelry, and next-level electronics,
+            our new arrivals are all about keeping you ahead of the curve.
+            Whether you're upgrading your look or your gadgets, we’ve got the
+            hottest picks waiting for you. 🚀 Don’t just keep up—set the trend.
+            Shop now before they’re gone! 🛍️✨
+          </p>
+        </div>
+      </section>
 
       <section
         className="min-h-[40vh] bg-gray-200 flex flex-col justify-center items-center text-center px-4 md:px-8 lg:px-16"
@@ -170,51 +175,51 @@ function Home({ selectedCategory }) {
       </section>
 
       <section
-  className="relative bg-cover bg-center bg-no-repeat pb-16"
-  style={{
-    backgroundImage: `url(${Reviews})`,
-    backgroundAttachment: "fixed",
-  }}
->
-  {/* Overlay to darken the background image */}
-  <div className="absolute inset-0 bg-black opacity-70"></div>
-  
-  {/* Content container with a higher z-index */}
-  <div className="relative z-10">
-    <h1 className="font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-8 leading-tight text-center pt-16">
-      What Our Clients Say
-    </h1>
-    
-    {/* Grid container for reviews */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
-      {reviews.map((review, index) => (
-        <div
-          key={index}
-          className="w-full sm:w-[80%] md:w-[70%] lg:w-[50%] p-6 md:p-8 mx-auto bg-gray-200 hover:scale-105 transition-all duration-200 ease-in-out shadow-lg border-l-4 border-blue-400 rounded-lg mt-6"
-        >
-          <p className="text-lg md:text-xl leading-7 text-gray-800 font-semibold">
-            {review.ReviewText}
-          </p>
-          <h2 className="font-bold text-lg md:text-xl mt-4 text-gray-900 flex items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-6 h-6 text-blue-400 mr-2"
-            >
-              <path
-                fillRule="evenodd"
-                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
-                clipRule="evenodd"
-              />
-            </svg>
-            {review.First_name}
-          </h2>
+        className="relative bg-cover bg-center bg-no-repeat pb-16"
+        style={{
+          backgroundImage: `url(${Reviews})`,
+          backgroundAttachment: "fixed",
+        }}
+      >
+        {/* Overlay to darken the background image */}
+        <div className="absolute inset-0 bg-black opacity-70"></div>
+
+        {/* Content container with a higher z-index */}
+        <div className="relative z-10">
+          <h1 className="font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-8 leading-tight text-center pt-16">
+            What Our Clients Say
+          </h1>
+
+          {/* Grid container for reviews */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4">
+            {reviews.map((review, index) => (
+              <div
+                key={index}
+                className="w-full sm:w-[80%] md:w-[70%] lg:w-[50%] p-6 md:p-8 mx-auto bg-gray-200 hover:scale-105 transition-all duration-200 ease-in-out shadow-lg border-l-4 border-blue-400 rounded-lg mt-6"
+              >
+                <p className="text-lg md:text-xl leading-7 text-gray-800 font-semibold">
+                  {review.ReviewText}
+                </p>
+                <h2 className="font-bold text-lg md:text-xl mt-4 text-gray-900 flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-6 h-6 text-blue-400 mr-2"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  {review.First_name}
+                </h2>
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
       <Footer />
     </div>
