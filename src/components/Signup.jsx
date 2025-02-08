@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 function Signin_Form() {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
+  
   // State to store form values
   const [formData, setFormData] = useState({
     First_name: '',
@@ -9,7 +11,7 @@ function Signin_Form() {
     Email: '',
     Password: '',
   });
-
+  
   const [message, setMessage] = useState(''); // To display success or error messages
 
   // Handle input changes
@@ -20,9 +22,21 @@ function Signin_Form() {
     });
   };
 
-  // Handle form submission
+  // Handle form submission with validations
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevents page reload on form submission
+
+    // Validation: Email must end with "@gmail.com"
+    if (!formData.Email.toLowerCase().endsWith('@gmail.com')) {
+      setMessage('Ivalid Email');
+      return;
+    }
+
+    // Validation: Password must be at least 8 characters long
+    if (formData.Password.length < 8) {
+      setMessage('Password must be at least 8 characters long');
+      return;
+    }
 
     try {
       const response = await fetch('https://server-backend-sable.vercel.app/signup', {
@@ -36,7 +50,7 @@ function Signin_Form() {
       const data = await response.json();
 
       if (response.ok) {
-        navigate(`/`);
+        navigate(`/login`);
       } else {
         setMessage(data.message || 'Signup failed');
       }
@@ -95,7 +109,7 @@ function Signin_Form() {
             value={formData.Email}
             onChange={handleChange}
             className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
-            placeholder="john.doe@company.com"
+            placeholder="john.doe@gmail.com"
             required
           />
         </div>
@@ -111,7 +125,7 @@ function Signin_Form() {
             value={formData.Password}
             onChange={handleChange}
             className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm"
-            placeholder="•••••••••"
+            placeholder="••••••••••"
             required
           />
         </div>
