@@ -3,31 +3,37 @@ import Card from "./Card";
 import Footer from "./Footer";
 
 function Shop({ selectedCategory }) {
-  const [CardData, setCardData] = useState([]); // All fetched data
-  const [filteredData, setFilteredData] = useState([]); // Filtered data based on search
-  const [currentPage, setCurrentPage] = useState(1); // Current page number
-  const [selectedCategoryState, setSelectedCategory] = useState(""); // Selected category state
-  const [searchQuery, setSearchQuery] = useState(""); // Search query state
+  // All fetched data
+  const [CardData, setCardData] = useState([]);
+  // Filtered data based on search
+  const [filteredData, setFilteredData] = useState([]);
+  // Current page number
+  const [currentPage, setCurrentPage] = useState(1);
+  // Selected category state
+  const [selectedCategoryState, setSelectedCategory] = useState("");
+  // Search query state
+  const [searchQuery, setSearchQuery] = useState("");
 
   const itemsPerPage = 9; // Number of items per page
 
+  // When a category is clicked, update the category state and reset page number
   const onclick = (evt) => {
-    const category = evt.currentTarget.textContent.trim(); // Clean up the text
-    setCurrentPage(1); // Reset to first page when category changes
+    const category = evt.currentTarget.textContent.trim();
+    setCurrentPage(1);
     if (category !== "All") {
       setSelectedCategory(category);
     } else {
-      setSelectedCategory(""); // If "All" is clicked, reset the filter
+      setSelectedCategory("");
     }
   };
 
-  // Pagination logic
+  // Pagination: slice the data for the current page
   const paginateData = (data) => {
     const offset = (currentPage - 1) * itemsPerPage;
-    return data.slice(offset, offset + itemsPerPage); // Slice the data array to show only 9 items per page
+    return data.slice(offset, offset + itemsPerPage);
   };
 
-  // Filter data based on search query
+  // Filter data based on the search query (case insensitive)
   const filterData = () => {
     const lowercasedQuery = searchQuery.toLowerCase();
     return CardData.filter(
@@ -37,29 +43,29 @@ function Shop({ selectedCategory }) {
     );
   };
 
-  // Update the filtered data whenever CardData or search query changes
+  // Update the filtered data whenever CardData or searchQuery changes
   useEffect(() => {
-    setFilteredData(filterData()); // Filter the data based on search query
-  }, [CardData, searchQuery]); // Runs when CardData or searchQuery changes
+    setFilteredData(filterData());
+  }, [CardData, searchQuery]);
 
-  // Update the data when category or page changes
+  // Update the fetched data when the category or page changes
   useEffect(() => {
     const fetchData = async () => {
       const url = selectedCategoryState
         ? `https://fakestoreapi.com/products/category/${selectedCategoryState}`
-        : "https://fakestoreapi.com/products"; // If no category, fetch all products
+        : "https://fakestoreapi.com/products";
 
       try {
         const res = await fetch(url);
         const data = await res.json();
-        setCardData(data); // Store all fetched data
+        setCardData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, [selectedCategoryState, currentPage]); // Runs when selectedCategoryState or currentPage changes
+  }, [selectedCategoryState, currentPage]);
 
   // Handle page change (next/prev)
   const handlePageChange = (direction) => {
@@ -73,26 +79,26 @@ function Shop({ selectedCategory }) {
     });
   };
 
-  // Handle search input change
+  // Handle search input changes
   const handleSearch = (e) => {
-    setSearchQuery(e.target.value); // Update the search query
+    setSearchQuery(e.target.value);
   };
 
-  // Pagination logic for filtered data
+  // Paginate filtered data
   const paginateFilteredData = () => {
-    return paginateData(filteredData); // Paginate the filtered data
+    return paginateData(filteredData);
   };
 
   return (
     <>
-      <section className="flex flex-col md:flex-row min-h-screen pt-18 mb-14">
+      <section className="flex flex-col md:flex-row min-h-screen pt-8 md:pt-18 mb-8 md:mb-14">
         {/* Category Section */}
         <div className="category w-full md:w-[30%] flex flex-col items-start md:items-center px-4 md:px-8 lg:px-24 mb-8 md:mb-0">
           <div className="search flex flex-col md:flex-row items-stretch gap-2 w-full mb-4">
             <input
               type="text"
-              value={searchQuery} // Bind input to searchQuery state
-              onChange={handleSearch} // Handle input change
+              value={searchQuery}
+              onChange={handleSearch}
               placeholder="Search Products"
               className="text-gray-400 border-2 border-blue-400 w-full md:w-[70%] h-[39px] px-2"
             />
@@ -154,20 +160,22 @@ function Shop({ selectedCategory }) {
           <div className="top">
             <p className="text-gray-400 mb-2">Home/Shop</p>
             <h4 className="mb-4">
-              Showing {itemsPerPage * (currentPage - 1) + 1}–{Math.min(
-                itemsPerPage * currentPage,
-                filteredData.length
-              )} of {filteredData.length} results
+              Showing {itemsPerPage * (currentPage - 1) + 1}–
+              {Math.min(itemsPerPage * currentPage, filteredData.length)} of{" "}
+              {filteredData.length} results
             </h4>
           </div>
-          <div
-            className="grid gap-4 my-8 bg-white sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 font-frank"
-          >
+          {/* Adjusted Grid Layout for Mobile: Grid with 2 columns */}
+          <div className="grid gap-4 my-8 bg-white grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 font-frank">
             {paginateFilteredData().map((element, index) => (
               <Card
                 key={index}
                 image={element.image}
-                title={element.title}
+                title={
+                  element.title.length > 40
+                    ? element.title.substring(0, 40) + "..."
+                    : element.title
+                }
                 price={element.price}
                 link={element.category}
                 description={element.description}
