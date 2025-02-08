@@ -1,42 +1,113 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeroImage from "./Assets/Heroimage.webp";
 import HeroImage2 from "./Assets/Heroimage2.webp";
 import HeroImage3 from "./Assets/Heroimage3.webp";
 import HeroImage4 from "./Assets/Heroimage4.webp";
 import HeroImage5 from "./Assets/Heroimage5.webp";
+
 const images = [HeroImage, HeroImage2, HeroImage3, HeroImage4, HeroImage5];
+
 function HeroSection() {
   const [currentImage, setCurrentImage] = useState(0);
-  const [prevImage, setPrevImage] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPrevImage(currentImage);
       setCurrentImage((prevIndex) => (prevIndex + 1) % images.length);
     }, 5000); // Change image every 5 seconds
 
     return () => {
-      clearInterval(interval); // Clear the interval on component unmount
+      clearInterval(interval);
     };
-  }, [currentImage]);
+  }, []);
+
+  // Generate 80 bubbles with random horizontal positions and animation delays
+  const bubbleElements = Array.from({ length: 80 }).map((_, index) => (
+    <div
+      key={index}
+      className="bubble"
+      style={{
+        left: `${Math.random() * 100}%`,
+        animationDelay: `${Math.random() * 8}s`,
+      }}
+    ></div>
+  ));
+
   return (
     <>
-   <section
-        className="min-h-[85vh] bg-cover bg-center bg-no-repeat bg-white dark:bg-gray-900 flex items-center justify-center -mt-20"
+      {/* Desktop/Tablet View: Rotating background image */}
+      <section
+        className="hidden md:flex min-h-[85vh] bg-cover bg-center bg-no-repeat bg-white dark:bg-gray-900 items-center justify-center -mt-20"
         style={{
-          backgroundImage: url(${images[currentImage]}),
-          transition: "background-image 1s ease-in-out", // Smooth transition
+          backgroundImage: `url(${images[currentImage]})`,
+          transition: "background-image 1s ease-in-out",
         }}
       ></section>
 
+      {/* Mobile View: Animated background-color changing from dark blue to light blue with bubbles and overlay text */}
+      <section
+        className="relative flex md:hidden min-h-[60vh] items-center justify-center -mt-20 overflow-hidden"
+        style={{
+          backgroundColor: "#4169E1",
+          animation: "colorAnimation 12s ease infinite",
+        }}
+      >
+        {/* Bubble animations */}
+        <div className="absolute inset-0 pointer-events-none">
+          {bubbleElements}
+        </div>
 
-      <section className="grid  shadow-2xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 min-h-[16vh] font-frank">
+        {/* Overlay Text */}
+        <div
+          className="relative z-10 text-center text-white px-4"
+          style={{ animation: "fadeIn 1.5s ease-out forwards", opacity: 0 }}
+        >
+          <h1 className="text-3xl font-bold mb-2">Welcome to Our Store!</h1>
+          <p className="text-lg">
+            Discover unbeatable deals and the latest trends in fashion.
+          </p>
+        </div>
+      </section>
+
+      {/* Keyframes for animations */}
+      <style>
+        {`
+          @keyframes colorAnimation {
+            0% { background-color: #4169E1; }
+            50% { background-color: #B0E0E6; }
+            100% { background-color: #4169E1; }
+          }
+          @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes bubbleUp {
+            0% { transform: translateY(0) scale(0.7); opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+          }
+          .bubble {
+            position: absolute;
+            bottom: -50px;
+            width: 25px;
+            height: 25px;
+            background-color: rgba(103, 181, 207, 0.8); /* Light bluish color */
+            border-radius: 50%;
+            animation: bubbleUp 10s ease-in-out infinite;
+          }
+        `}
+      </style>
+
+      {/* Grid Section: Colorful information boxes */}
+      <section
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 my-8 p-4 shadow-2xl min-h-[16vh] font-frank"
+        style={{ boxShadow: "inset 0 -8px 8px rgba(0, 0, 0, 0.2)" }}
+      >
         <div className="wrap1 flex justify-around text-wrap p-4 items-center text-xl m-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="size-25 text-blue-400 "
+            className="size-25 text-blue-400"
           >
             <path
               fillRule="evenodd"
@@ -44,16 +115,17 @@ function HeroSection() {
               clipRule="evenodd"
             />
           </svg>
-
-          <div className="box1 ml-8 flex flex-col flex-wrap items-center  ">
-            <h3 className="font-bold text-2xl leading-10">
+          <div className="box1 ml-8 flex flex-col items-center">
+            <h3 className="font-bold text-2xl leading-10 text-black">
               High Quality Cloths
             </h3>
-            <p>Premium-quality clothing crafted with superior materials and impeccable attention to detail, ensuring comfort, durability, and timeless style.</p>
+            <p className="text-sm text-black">
+              Premium-quality clothing crafted with superior materials and impeccable attention to detail.
+            </p>
           </div>
         </div>
 
-        <div className="wrap2  flex justify-around text-wrap p-4 items-center  text-xl m-4">
+        <div className="wrap2 flex justify-around text-wrap p-4 items-center text-xl m-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -66,16 +138,17 @@ function HeroSection() {
               clipRule="evenodd"
             />
           </svg>
-
-          <div className="box2 ml-8 flex flex-col flex-wrap  justify-center items-center  ">
-            <h3 className="font-bold text-2xl leading-10 ">
+          <div className="box2 ml-8 flex flex-col items-center">
+            <h3 className="font-bold text-2xl leading-10 text-black">
               Wide Cloths Range
             </h3>
-            <p>Explore a diverse collection of stylish and high-quality clothing to suit every occasion and preference.</p>
+            <p className="text-sm text-black">
+              Explore a diverse collection of stylish and high-quality clothing.
+            </p>
           </div>
         </div>
 
-        <div className="wrap3 flex justify-around text-wrap p-4 items-center  text-xl m-4">
+        <div className="wrap3 flex justify-around text-wrap p-4 items-center text-xl m-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -88,16 +161,17 @@ function HeroSection() {
               clipRule="evenodd"
             />
           </svg>
-
-          <div className="box3 ml-8 flex flex-col flex-wrap  justify-center items-center  ">
-            <h3 className="font-bold text-2xl leading-10">
+          <div className="box3 ml-8 flex flex-col items-center">
+            <h3 className="font-bold text-2xl leading-10 text-black">
               Excellent Services
             </h3>
-            <p>Dedicated to providing exceptional customer service, ensuring a seamless and satisfying shopping experience.</p>
+            <p className="text-sm text-black">
+              Exceptional customer service for a seamless shopping experience.
+            </p>
           </div>
         </div>
 
-        <div className="wrap4 flex justify-around text-wrap p-4 items-center  text-xl m-4">
+        <div className="wrap4 flex justify-around text-wrap p-4 items-center text-xl m-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -108,13 +182,18 @@ function HeroSection() {
             <path d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z" />
             <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
           </svg>
-
-          <div className="box4 ml-8 flex flex-col flex-wrap  justify-center items-center  ">
-            <h3 className="font-bold text-2xl leading-10">Fast Delivery</h3>
-            <p>Enjoy quick and reliable delivery, bringing your favorite fashion pieces straight to your doorstep in no time.</p>
+          <div className="box4 ml-8 flex flex-col items-center">
+            <h3 className="font-bold text-2xl leading-10 text-black">
+              Fast Delivery
+            </h3>
+            <p className="text-sm text-black">
+              Quick and reliable delivery to your doorstep.
+            </p>
           </div>
         </div>
       </section>
     </>
   );
 }
+
+export default HeroSection;
