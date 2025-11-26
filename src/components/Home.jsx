@@ -16,13 +16,7 @@ function Home({ selectedCategory }) {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Force user to log in by checking for a token in localStorage
-  useEffect(() => {
-    const token = localStorage.getItem("First_name"); // Adjust key as needed
-    if (!token) {
-      navigate("/login"); // Redirect to login page if token not found
-    }
-  }, [navigate]);
+  
 
   const handleViewAllClick = () => {
     navigate("/Shop");
